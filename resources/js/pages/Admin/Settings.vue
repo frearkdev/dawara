@@ -57,7 +57,7 @@ function save() {
             <label class="mb-1 block text-[11px] uppercase tracking-wider text-stone-500">Adres</label>
             <input v-model="form.address" required class="w-full rounded-lg border border-stone-700 bg-stone-900 px-3 py-2 text-sm text-white focus:outline-none focus:border-stone-500" />
           </div>
-          <div class="grid grid-cols-2 gap-3">
+          <div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
             <div>
               <label class="mb-1 block text-[11px] uppercase tracking-wider text-stone-500">Telefoon</label>
               <input v-model="form.phone" required class="w-full rounded-lg border border-stone-700 bg-stone-900 px-3 py-2 text-sm text-white focus:outline-none focus:border-stone-500" />
@@ -71,7 +71,7 @@ function save() {
             <label class="mb-1 block text-[11px] uppercase tracking-wider text-stone-500">Website</label>
             <input v-model="form.website" type="url" class="w-full rounded-lg border border-stone-700 bg-stone-900 px-3 py-2 text-sm text-white focus:outline-none focus:border-stone-500" placeholder="https://..." />
           </div>
-          <div class="grid grid-cols-2 gap-3">
+          <div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
             <div>
               <label class="mb-1 block text-[11px] uppercase tracking-wider text-stone-500">Instagram</label>
               <input v-model="form.instagram" type="url" class="w-full rounded-lg border border-stone-700 bg-stone-900 px-3 py-2 text-sm text-white focus:outline-none focus:border-stone-500" placeholder="https://..." />
@@ -103,7 +103,7 @@ function save() {
               <div class="absolute left-0.5 top-0.5 h-4 w-4 rounded-full bg-white transition-transform peer-checked:translate-x-4" />
             </label>
           </div>
-          <div class="grid grid-cols-2 gap-3">
+          <div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
             <div>
               <label class="mb-1 block text-[11px] uppercase tracking-wider text-stone-500">Dagen vooruit</label>
               <input v-model.number="form.advance_booking_days" type="number" min="1" max="90" required class="w-full rounded-lg border border-stone-700 bg-stone-900 px-3 py-2 text-sm text-white focus:outline-none focus:border-stone-500" />
@@ -125,17 +125,17 @@ function save() {
 
         <h2 class="mt-8 mb-5 text-sm font-medium text-white">Openingstijden</h2>
         <div class="space-y-2">
-          <div v-for="day in [1,2,3,4,5,6,0]" :key="day" class="flex items-center gap-3 border-b border-stone-800 py-2">
+          <div v-for="day in [1,2,3,4,5,6,0]" :key="day" class="flex flex-wrap items-center gap-2 border-b border-stone-800 py-2">
             <div class="w-24 flex-shrink-0 text-xs font-medium text-stone-300">{{ dayNames[day] }}</div>
-            <label class="relative inline-flex cursor-pointer items-center mr-2">
+            <label class="relative mr-2 inline-flex cursor-pointer items-center">
               <input :checked="!isClosed(day)" @change="e => setClosed(day, !(e.target as HTMLInputElement).checked)" type="checkbox" class="peer sr-only" />
               <div class="h-5 w-9 rounded-full bg-stone-700 transition-colors peer-checked:bg-amber-500" />
               <div class="absolute left-0.5 top-0.5 h-4 w-4 rounded-full bg-white transition-transform peer-checked:translate-x-4" />
             </label>
             <template v-if="!isClosed(day)">
-              <input v-model="hours[day].open" type="time" class="flex-1 rounded border border-stone-700 bg-stone-900 px-2 py-1 text-xs text-white focus:outline-none focus:border-stone-500" />
+              <input v-model="hours[day].open" type="time" class="min-w-[120px] flex-1 rounded border border-stone-700 bg-stone-900 px-2 py-1 text-xs text-white focus:outline-none focus:border-stone-500" />
               <span class="text-xs text-stone-500">–</span>
-              <input v-model="hours[day].close" type="time" class="flex-1 rounded border border-stone-700 bg-stone-900 px-2 py-1 text-xs text-white focus:outline-none focus:border-stone-500" />
+              <input v-model="hours[day].close" type="time" class="min-w-[120px] flex-1 rounded border border-stone-700 bg-stone-900 px-2 py-1 text-xs text-white focus:outline-none focus:border-stone-500" />
             </template>
             <span v-else class="flex-1 text-xs text-stone-500">Gesloten</span>
           </div>

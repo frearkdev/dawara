@@ -18,8 +18,8 @@ function closeMobileMenu(): void {
 
 <template>
     <header class="sticky top-0 z-50 border-b border-stone-700/60 bg-stone-950/90 backdrop-blur-xl">
-        <div class="section-shell flex h-16 items-center justify-between gap-4 md:h-20">
-            <Link href="/" class="flex items-center gap-3 text-sm font-semibold tracking-[0.35em] text-white">
+        <div class="section-shell flex h-14 items-center justify-between gap-3 md:h-20">
+            <Link href="/" class="flex items-center gap-3 text-xs font-semibold tracking-[0.3em] text-white sm:text-sm sm:tracking-[0.35em]">
                 <span>DAWARA<span class="text-amber-500">.</span></span>
             </Link>
 
@@ -38,7 +38,7 @@ function closeMobileMenu(): void {
 <!--                <template v-else>-->
 <!--                    <Link href="/login" class="hidden text-xs uppercase tracking-[0.28em] text-stone-400 transition-colors hover:text-white sm:inline-flex">Inloggen</Link>-->
 <!--                </template>-->
-                <Link href="/boeken" class="inline-flex items-center rounded-md border border-stone-600 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.24em] text-white transition-colors hover:border-stone-400 hover:bg-white/5 md:px-5 md:py-2.5 md:text-xs">
+                <Link href="/boeken" class="inline-flex items-center rounded-md border border-stone-600 px-3 py-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-white transition-colors hover:border-stone-400 hover:bg-white/5 sm:px-4 sm:text-[11px] md:px-5 md:py-2.5 md:text-xs md:tracking-[0.24em]">
                     Boeken
                 </Link>
 

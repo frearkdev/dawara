@@ -21,8 +21,8 @@
         </div>
         <div v-else class="divide-y divide-stone-700">
           <div v-for="a in todayAppointments" :key="a.id"
-            class="flex items-center gap-3 px-5 py-3.5 transition-colors hover:bg-white/5">
-            <div class="text-center flex-shrink-0 w-12">
+            class="flex flex-col gap-2 px-5 py-3.5 transition-colors hover:bg-white/5 sm:flex-row sm:items-center sm:gap-3">
+            <div class="w-full text-left sm:w-12 sm:flex-shrink-0 sm:text-center">
               <div class="text-sm font-medium text-white">{{ a.starts_at }}</div>
               <div class="text-xs text-stone-500">{{ a.ends_at }}</div>
             </div>
@@ -30,7 +30,7 @@
               <div class="truncate text-xs font-medium text-white">{{ a.customer_name }}</div>
               <div class="truncate text-xs text-stone-400">{{ a.service_name }} · {{ a.barber_name }}</div>
             </div>
-            <div class="flex items-center gap-2 flex-shrink-0">
+            <div class="flex flex-wrap items-center gap-2 sm:flex-shrink-0">
               <span class="text-xs text-stone-400">{{ a.price_formatted }}</span>
               <AdminStatusBadge :status="a.status" />
             </div>
@@ -48,12 +48,12 @@
         </div>
         <div v-else class="divide-y divide-stone-700">
           <div v-for="a in upcomingAppointments" :key="a.id"
-            class="flex items-center gap-3 px-5 py-3.5 transition-colors hover:bg-white/5">
+            class="flex flex-col gap-1 px-5 py-3.5 transition-colors hover:bg-white/5 sm:flex-row sm:items-center sm:gap-3">
             <div class="flex-1 min-w-0">
               <div class="truncate text-xs font-medium text-white">{{ a.customer_name }}</div>
               <div class="truncate text-xs text-stone-400">{{ a.service_name }}</div>
             </div>
-            <div class="text-right flex-shrink-0">
+            <div class="text-left sm:flex-shrink-0 sm:text-right">
               <div class="text-xs font-medium text-stone-200">{{ a.starts_at }}</div>
               <div class="text-xs text-stone-500">{{ a.barber_name }}</div>
             </div>

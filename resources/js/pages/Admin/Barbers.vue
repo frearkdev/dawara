@@ -170,10 +170,10 @@ selectedServiceIds.value.push(id)
             </div>
           </div>
 
-          <div class="flex gap-2">
-            <button @click="openProfile(b)" class="flex-1 rounded-md border border-stone-700 bg-stone-950 px-3 py-2 text-[11px] text-white transition-colors hover:border-stone-500 hover:bg-white/5">Profiel bewerken</button>
-            <button @click="openServices(b)" class="flex-1 rounded-md border border-stone-700 bg-stone-950 px-3 py-2 text-[11px] text-white transition-colors hover:border-stone-500 hover:bg-white/5">Diensten</button>
-            <button @click="openSchedule(b)" class="flex-1 rounded-md border border-stone-700 bg-stone-950 px-3 py-2 text-[11px] text-white transition-colors hover:border-stone-500 hover:bg-white/5">Rooster</button>
+          <div class="grid grid-cols-1 gap-2 sm:grid-cols-3">
+            <button @click="openProfile(b)" class="rounded-md border border-stone-700 bg-stone-950 px-3 py-2 text-[11px] text-white transition-colors hover:border-stone-500 hover:bg-white/5">Profiel bewerken</button>
+            <button @click="openServices(b)" class="rounded-md border border-stone-700 bg-stone-950 px-3 py-2 text-[11px] text-white transition-colors hover:border-stone-500 hover:bg-white/5">Diensten</button>
+            <button @click="openSchedule(b)" class="rounded-md border border-stone-700 bg-stone-950 px-3 py-2 text-[11px] text-white transition-colors hover:border-stone-500 hover:bg-white/5">Rooster</button>
           </div>
         </div>
       </div>
@@ -183,15 +183,15 @@ selectedServiceIds.value.push(id)
       <div class="w-full max-w-md rounded-[1.5rem] border border-stone-700 bg-stone-950 p-6 shadow-[0_30px_100px_rgba(0,0,0,0.4)] max-h-[90vh] overflow-y-auto">
         <h2 class="mb-5 text-sm font-medium text-white">Rooster — {{ editingBarber.name }}</h2>
         <form @submit.prevent="saveSchedule" class="space-y-3">
-          <div v-for="day in scheduleForm" :key="day.day_of_week" class="flex items-center gap-3 py-2 border-b border-stone-800">
-            <div class="flex items-center gap-2 w-24 flex-shrink-0">
+          <div v-for="day in scheduleForm" :key="day.day_of_week" class="flex flex-wrap items-center gap-2 border-b border-stone-800 py-2">
+            <div class="flex w-24 flex-shrink-0 items-center gap-2">
               <input v-model="day.active" type="checkbox" :id="`day-${day.day_of_week}`" class="rounded border-stone-600 bg-stone-900 text-amber-500 focus:ring-amber-500" />
               <label :for="`day-${day.day_of_week}`" class="text-xs text-stone-300 cursor-pointer">{{ dayNames[day.day_of_week] }}</label>
             </div>
             <template v-if="day.active">
-              <input v-model="day.start_time" type="time" class="border border-stone-700 rounded bg-stone-900 px-2 py-1 text-xs text-white focus:outline-none focus:border-stone-500 flex-1" />
+              <input v-model="day.start_time" type="time" class="min-w-[120px] flex-1 rounded border border-stone-700 bg-stone-900 px-2 py-1 text-xs text-white focus:outline-none focus:border-stone-500" />
               <span class="text-xs text-stone-500">–</span>
-              <input v-model="day.end_time" type="time" class="border border-stone-700 rounded bg-stone-900 px-2 py-1 text-xs text-white focus:outline-none focus:border-stone-500 flex-1" />
+              <input v-model="day.end_time" type="time" class="min-w-[120px] flex-1 rounded border border-stone-700 bg-stone-900 px-2 py-1 text-xs text-white focus:outline-none focus:border-stone-500" />
             </template>
             <span v-else class="text-xs text-stone-500 flex-1">Vrij</span>
           </div>

@@ -19,14 +19,14 @@ defineProps<{
 <template>
     <section id="diensten" class="section-shell py-16 md:py-20">
         <div class="section-kicker mb-2 text-amber-500">Wat we aanbieden</div>
-        <div class="flex items-end justify-between gap-6">
+        <div class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between md:gap-6">
             <div>
                 <h2 class="section-title text-white">ONZE DIENSTEN</h2>
                 <p class="section-copy mt-1 text-stone-400">
                     Gespecialiseerde herenkapsels, baardverzorging en huidverzorging met de nieuwste apparaten en technologieën.
                 </p>
             </div>
-            <Link href="/boeken" class="hidden rounded-md border border-stone-600 px-4 py-2 text-[11px] uppercase tracking-[0.08em] text-stone-300 transition-colors hover:border-stone-400 hover:text-white md:inline-flex">
+            <Link href="/boeken" class="inline-flex w-full items-center justify-center rounded-md border border-stone-600 px-4 py-2 text-[11px] uppercase tracking-[0.08em] text-stone-300 transition-colors hover:border-stone-400 hover:text-white md:w-auto">
                 Direct boeken →
             </Link>
         </div>

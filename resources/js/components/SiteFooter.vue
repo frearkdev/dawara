@@ -1,6 +1,6 @@
 <template>
     <footer class="border-t border-stone-700/60 bg-stone-950 text-stone-200">
-        <div class="section-shell py-14">
+        <div class="section-shell py-12 md:py-14">
             <div class="grid gap-10 md:grid-cols-3">
                 <div>
                     <div class="text-sm font-semibold tracking-[0.35em] text-white">DAWARA<span class="text-amber-500">.</span></div>
@@ -36,7 +36,7 @@
                 </div>
             </div>
 
-            <div class="mt-10 flex flex-col gap-2 border-t border-white/10 pt-6 text-xs uppercase tracking-[0.28em] text-stone-500 sm:flex-row sm:items-center sm:justify-between">
+            <div class="mt-10 flex flex-col gap-2 border-t border-white/10 pt-6 text-[11px] uppercase tracking-[0.18em] text-stone-500 sm:flex-row sm:items-center sm:justify-between sm:text-xs sm:tracking-[0.28em]">
                 <span>© 2026 Dawara Barbershop</span>
                 <span>Wortelhaven 83 · Leeuwarden</span>
             </div>

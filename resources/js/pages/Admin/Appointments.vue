@@ -5,14 +5,14 @@
     <!-- Filters -->
     <div class="mb-5 flex flex-wrap gap-3 rounded-[1.25rem] border border-stone-700 bg-stone-900 p-4">
       <input type="date" v-model="filterDate"
-        class="rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-xs text-white focus:border-stone-500 focus:outline-none" />
+        class="w-full rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-xs text-white focus:border-stone-500 focus:outline-none sm:w-auto" />
       <select v-model="filterBarber"
-        class="rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-xs text-white focus:border-stone-500 focus:outline-none">
+        class="w-full rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-xs text-white focus:border-stone-500 focus:outline-none sm:w-auto">
         <option value="">Alle barbers</option>
         <option v-for="b in barbers" :key="b.id" :value="b.id">{{ b.name }}</option>
       </select>
       <select v-model="filterStatus"
-        class="rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-xs text-white focus:border-stone-500 focus:outline-none">
+        class="w-full rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-xs text-white focus:border-stone-500 focus:outline-none sm:w-auto">
         <option value="">Alle statussen</option>
         <option value="confirmed">Bevestigd</option>
         <option value="pending">Pending</option>
@@ -21,15 +21,16 @@
         <option value="no_show">No-show</option>
       </select>
       <button @click="applyFilters"
-        class="rounded-md border border-stone-700 bg-stone-950 px-4 py-2 text-xs text-white transition-colors hover:border-stone-500 hover:bg-white/5">
+        class="w-full rounded-md border border-stone-700 bg-stone-950 px-4 py-2 text-xs text-white transition-colors hover:border-stone-500 hover:bg-white/5 sm:w-auto">
         Filteren
       </button>
-      <button @click="resetFilters" class="px-2 text-xs text-stone-500 hover:text-white">Reset</button>
+      <button @click="resetFilters" class="w-full px-2 py-2 text-left text-xs text-stone-500 hover:text-white sm:w-auto sm:py-0 sm:text-center">Reset</button>
     </div>
 
     <!-- Tabel -->
     <div class="overflow-hidden rounded-[1.5rem] border border-stone-700 bg-stone-900">
-      <table class="w-full text-xs">
+      <div class="overflow-x-auto">
+      <table class="w-full min-w-[820px] text-xs">
         <thead>
           <tr class="border-b border-stone-700 bg-stone-950/70">
             <th class="px-5 py-3 text-left font-medium text-stone-500">Klant</th>
@@ -55,7 +56,7 @@
               <AdminStatusBadge :status="a.status" />
             </td>
             <td class="px-4 py-3.5">
-              <div class="flex gap-1">
+              <div class="flex flex-wrap gap-1">
                 <button v-if="a.status === 'confirmed'" @click="updateStatus(a.id, 'completed')"
                   class="rounded border border-emerald-500/20 px-2.5 py-1 text-xs text-emerald-300 transition-colors hover:bg-emerald-500/10">
                   ✓ Klaar
@@ -73,17 +74,18 @@
           </tr>
         </tbody>
       </table>
+      </div>
 
       <div v-if="appointments.data.length === 0" class="text-center py-12 text-xs text-stone-500">
         Geen afspraken gevonden.
       </div>
 
       <!-- Paginering -->
-      <div v-if="appointments.last_page > 1" class="flex items-center justify-between border-t border-stone-700 px-5 py-4">
+      <div v-if="appointments.last_page > 1" class="flex flex-col gap-3 border-t border-stone-700 px-5 py-4 sm:flex-row sm:items-center sm:justify-between">
         <span class="text-xs text-stone-500">
           {{ appointments.from }}–{{ appointments.to }} van {{ appointments.total }}
         </span>
-        <div class="flex gap-1">
+        <div class="flex flex-wrap gap-1">
           <a v-for="link in appointments.links" :key="link.label"
             :href="link.url ?? '#'"
             v-html="link.label"

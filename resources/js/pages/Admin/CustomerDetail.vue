@@ -65,8 +65,8 @@ const props = defineProps<{
           Geen afspraken gevonden.
         </div>
         <div v-else class="divide-y divide-stone-700">
-          <div v-for="a in appointments" :key="a.id" class="flex items-center gap-3 px-5 py-3.5 transition-colors hover:bg-white/5">
-            <div class="text-center flex-shrink-0 w-20">
+          <div v-for="a in appointments" :key="a.id" class="flex flex-col gap-2 px-5 py-3.5 transition-colors hover:bg-white/5 sm:flex-row sm:items-center sm:gap-3">
+            <div class="w-full text-left sm:w-20 sm:flex-shrink-0 sm:text-center">
               <div class="text-xs font-medium text-white">{{ a.starts_at.split(' ')[0] }}</div>
               <div class="text-[11px] text-stone-500">{{ a.starts_at.split(' ')[1] }}</div>
             </div>
@@ -74,7 +74,7 @@ const props = defineProps<{
               <div class="truncate text-xs font-medium text-white">{{ a.service_name }}</div>
               <div class="truncate text-xs text-stone-400">{{ a.barber_name }}</div>
             </div>
-            <div class="flex items-center gap-2 flex-shrink-0">
+            <div class="flex flex-wrap items-center gap-2 sm:flex-shrink-0">
               <span class="text-xs text-stone-400">{{ a.price_formatted }}</span>
               <span v-if="a.is_paid" class="rounded-full px-2 py-0.5 text-[10px] font-medium bg-emerald-500/10 text-emerald-300 ring-1 ring-emerald-500/20">Betaald</span>
               <span v-else class="rounded-full px-2 py-0.5 text-[10px] font-medium bg-amber-500/10 text-amber-300 ring-1 ring-amber-500/20">Open</span>

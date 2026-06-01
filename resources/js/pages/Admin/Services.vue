@@ -58,7 +58,7 @@
             <textarea v-model="form.description" rows="2"
               class="w-full resize-none rounded-lg border border-stone-700 bg-stone-900 px-3 py-2.5 text-sm text-white focus:border-stone-500 focus:outline-none" />
           </div>
-          <div class="grid grid-cols-2 gap-3">
+          <div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
             <div>
               <label class="text-xs text-stone-400 uppercase tracking-wide mb-1 block">Duur (min) *</label>
               <input v-model.number="form.duration_minutes" type="number" min="5" required
@@ -71,7 +71,7 @@
               <p class="mt-1 text-xs text-stone-500">{{ (form.price_cents / 100).toFixed(2) }} EUR</p>
             </div>
           </div>
-          <div class="grid grid-cols-2 gap-3">
+          <div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
             <div>
               <label class="text-xs text-stone-400 uppercase tracking-wide mb-1 block">Kleur</label>
               <input v-model="form.color" type="color"

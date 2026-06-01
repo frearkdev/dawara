@@ -72,7 +72,7 @@ function addManual() {
         Of plak reviews handmatig via het tekstvak hieronder.
       </p>
 
-      <form @submit.prevent="importGoogle" class="flex items-end gap-3 mb-5">
+      <form @submit.prevent="importGoogle" class="mb-5 flex flex-col gap-3 sm:flex-row sm:items-end">
         <div class="flex-1">
           <label class="mb-1 block text-[11px] uppercase tracking-wider text-stone-500">Google Place ID (optioneel — voor API)</label>
           <input
@@ -85,7 +85,7 @@ function addManual() {
         <button
           type="submit"
           :disabled="importing"
-          class="rounded-md border border-stone-600 bg-stone-950 px-4 py-2 text-xs text-white transition-colors hover:bg-stone-800 disabled:opacity-50"
+          class="w-full rounded-md border border-stone-600 bg-stone-950 px-4 py-2 text-xs text-white transition-colors hover:bg-stone-800 disabled:opacity-50 sm:w-auto"
         >
           {{ importing ? 'Zoeken...' : 'Zoek reviews' }}
         </button>
@@ -114,7 +114,7 @@ function addManual() {
 
       <div class="border-t border-stone-800 pt-4">
         <label class="mb-1 block text-[11px] uppercase tracking-wider text-stone-500">Handmatig review toevoegen</label>
-        <form @submit.prevent="addManual" class="grid grid-cols-2 gap-3">
+        <form @submit.prevent="addManual" class="grid grid-cols-1 gap-3 sm:grid-cols-2">
           <div class="col-span-2">
             <input v-model="manual.author" type="text" placeholder="Naam klant" required class="w-full rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-white placeholder-stone-600 focus:outline-none focus:border-stone-500" />
           </div>
@@ -154,46 +154,50 @@ function addManual() {
     </div>
 
     <div class="overflow-hidden rounded-[1.25rem] border border-stone-700 bg-stone-900">
-      <div class="grid grid-cols-12 border-b border-stone-800 px-5 py-3 text-[11px] font-medium uppercase tracking-wider text-stone-500">
-        <div class="col-span-2">Klant</div>
-        <div class="col-span-1">Bron</div>
-        <div class="col-span-1">Score</div>
-        <div class="col-span-4">Comment</div>
-        <div class="col-span-2">Status</div>
-        <div class="col-span-2 text-right">Actie</div>
-      </div>
-      <div v-if="reviews.data.length === 0" class="px-5 py-8 text-center text-xs text-stone-500">
-        Geen reviews gevonden.
-      </div>
-      <div v-for="r in reviews.data" :key="r.id" class="grid grid-cols-12 items-center border-b border-stone-800 px-5 py-3.5 transition-colors hover:bg-white/5">
-        <div class="col-span-2 text-xs font-medium text-white truncate">{{ r.customer_name }}</div>
-        <div class="col-span-1">
-          <span
-            class="rounded-full px-2 py-0.5 text-[10px] font-medium ring-1"
-            :class="r.source === 'google' ? 'bg-blue-500/10 text-blue-300 ring-blue-500/20' : 'bg-stone-700 text-stone-400 ring-stone-600'"
-          >
-            {{ r.source === 'google' ? 'Google' : 'Systeem' }}
-          </span>
-        </div>
-        <div class="col-span-1 text-xs text-amber-500 font-semibold">{{ r.rating }}/5</div>
-        <div class="col-span-4 text-xs text-stone-300 truncate pr-3" :title="r.comment">{{ r.comment || '—' }}</div>
-        <div class="col-span-2">
-          <span v-if="r.visible" class="rounded-full px-2 py-0.5 text-[10px] font-medium bg-emerald-500/10 text-emerald-300 ring-1 ring-emerald-500/20">Zichtbaar</span>
-          <span v-else class="rounded-full px-2 py-0.5 text-[10px] font-medium bg-stone-700 text-stone-400 ring-1 ring-stone-600">Verborgen</span>
-        </div>
-        <div class="col-span-2 text-right">
-          <button
-            @click="toggleVisibility(r)"
-            class="text-[11px] transition-colors hover:text-amber-500"
-            :class="r.visible ? 'text-stone-400' : 'text-amber-500'"
-          >
-            {{ r.visible ? 'Verberg' : 'Toon' }}
-          </button>
+      <div class="overflow-x-auto">
+        <div class="min-w-[860px]">
+          <div class="grid grid-cols-12 border-b border-stone-800 px-5 py-3 text-[11px] font-medium uppercase tracking-wider text-stone-500">
+            <div class="col-span-2">Klant</div>
+            <div class="col-span-1">Bron</div>
+            <div class="col-span-1">Score</div>
+            <div class="col-span-4">Comment</div>
+            <div class="col-span-2">Status</div>
+            <div class="col-span-2 text-right">Actie</div>
+          </div>
+          <div v-if="reviews.data.length === 0" class="px-5 py-8 text-center text-xs text-stone-500">
+            Geen reviews gevonden.
+          </div>
+          <div v-for="r in reviews.data" :key="r.id" class="grid grid-cols-12 items-center border-b border-stone-800 px-5 py-3.5 transition-colors hover:bg-white/5">
+            <div class="col-span-2 text-xs font-medium text-white truncate">{{ r.customer_name }}</div>
+            <div class="col-span-1">
+              <span
+                class="rounded-full px-2 py-0.5 text-[10px] font-medium ring-1"
+                :class="r.source === 'google' ? 'bg-blue-500/10 text-blue-300 ring-blue-500/20' : 'bg-stone-700 text-stone-400 ring-stone-600'"
+              >
+                {{ r.source === 'google' ? 'Google' : 'Systeem' }}
+              </span>
+            </div>
+            <div class="col-span-1 text-xs text-amber-500 font-semibold">{{ r.rating }}/5</div>
+            <div class="col-span-4 text-xs text-stone-300 truncate pr-3" :title="r.comment">{{ r.comment || '—' }}</div>
+            <div class="col-span-2">
+              <span v-if="r.visible" class="rounded-full px-2 py-0.5 text-[10px] font-medium bg-emerald-500/10 text-emerald-300 ring-1 ring-emerald-500/20">Zichtbaar</span>
+              <span v-else class="rounded-full px-2 py-0.5 text-[10px] font-medium bg-stone-700 text-stone-400 ring-1 ring-stone-600">Verborgen</span>
+            </div>
+            <div class="col-span-2 text-right">
+              <button
+                @click="toggleVisibility(r)"
+                class="text-[11px] transition-colors hover:text-amber-500"
+                :class="r.visible ? 'text-stone-400' : 'text-amber-500'"
+              >
+                {{ r.visible ? 'Verberg' : 'Toon' }}
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
 
-    <div v-if="reviews.links.length > 3" class="mt-5 flex items-center gap-2">
+    <div v-if="reviews.links.length > 3" class="mt-5 flex flex-wrap items-center gap-2">
       <template v-for="link in reviews.links" :key="link.label">
         <button
           v-if="link.url"

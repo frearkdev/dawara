@@ -3,7 +3,7 @@
         <div class="overflow-hidden rounded-[1.25rem] border border-stone-700 bg-stone-900 p-6 text-stone-100 shadow-[0_20px_80px_rgba(0,0,0,0.22)] md:p-8 lg:grid lg:grid-cols-[0.95fr_1.05fr] lg:gap-10">
             <div>
                 <div class="section-kicker text-amber-500">KNIPPEN & STYLEN</div>
-                <h2 class="mt-3 text-3xl font-medium tracking-tight text-white">Verder dan de basis</h2>
+                <h2 class="mt-3 text-2xl font-medium tracking-tight text-white sm:text-3xl">Verder dan de basis</h2>
                 <p class="mt-4 max-w-xl text-sm leading-7 text-stone-400">
                     Gespecialiseerde herenkapsels, baardverzorging en haarstyling met de nieuwste apparaten en technieken.
                 </p>
@@ -27,7 +27,7 @@
                     </div>
                 </div>
 
-                <Link href="/boeken" class="mt-8 inline-flex items-center rounded-md border border-stone-600 px-5 py-3 text-[11px] font-medium uppercase tracking-[0.12em] text-white transition-colors hover:border-stone-400 hover:bg-white/5">
+                <Link href="/boeken" class="mt-8 inline-flex w-full items-center justify-center rounded-md border border-stone-600 px-5 py-3 text-[11px] font-medium uppercase tracking-[0.12em] text-white transition-colors hover:border-stone-400 hover:bg-white/5 sm:w-auto">
                     Afspraak maken
                 </Link>
             </div>

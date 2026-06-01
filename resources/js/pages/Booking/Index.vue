@@ -1,20 +1,20 @@
 <template>
   <Head title="Afspraak maken" />
 
-    <div class="min-h-screen bg-stone-950 px-4 py-12 text-stone-100">
-      <div class="mx-auto max-w-4xl rounded-[1.75rem] border border-stone-700 bg-stone-900/95 p-6 shadow-[0_30px_100px_rgba(0,0,0,0.35)] md:p-8">
+    <div class="min-h-screen bg-stone-950 px-4 py-8 text-stone-100 sm:py-12">
+      <div class="mx-auto max-w-4xl rounded-[1.75rem] border border-stone-700 bg-stone-900/95 p-4 shadow-[0_30px_100px_rgba(0,0,0,0.35)] sm:p-6 md:p-8">
 
         <!-- Header -->
-        <div class="text-center mb-10">
-          <div class="text-xs tracking-widest text-amber-500 uppercase mb-2">Online reserveren</div>
-          <h1 class="text-3xl font-medium text-white md:text-4xl">Plan jouw bezoek</h1>
+        <div class="mb-8 text-center sm:mb-10">
+          <div class="mb-2 text-xs uppercase tracking-widest text-amber-500">Online reserveren</div>
+          <h1 class="text-2xl font-medium text-white sm:text-3xl md:text-4xl">Plan jouw bezoek</h1>
           <p class="text-sm text-stone-400 mt-2">{{ stepLabels[step - 1] }}</p>
         </div>
 
         <!-- Stap indicator -->
-        <div class="flex items-center justify-center gap-2 mb-10">
+        <div class="mb-8 flex items-center justify-center gap-1.5 sm:mb-10 sm:gap-2">
           <template v-for="n in 4" :key="n">
-            <div class="w-7 h-7 rounded-full flex items-center justify-center text-xs font-medium transition-all"
+            <div class="flex h-7 w-7 items-center justify-center rounded-full text-xs font-medium transition-all"
               :class="n < step
                 ? 'bg-white text-stone-950'
                 : n === step
@@ -23,12 +23,12 @@
               <span v-if="n < step">✓</span>
               <span v-else>{{ n }}</span>
             </div>
-            <div v-if="n < 4" class="w-8 h-px transition-colors"
+            <div v-if="n < 4" class="h-px w-6 transition-colors sm:w-8"
               :class="n < step ? 'bg-white' : 'bg-stone-700'" />
           </template>
         </div>
 
-        <div class="rounded-[1.5rem] border border-stone-700 bg-stone-950 p-7 shadow-[0_24px_90px_rgba(0,0,0,0.2)]">
+        <div class="rounded-[1.5rem] border border-stone-700 bg-stone-950 p-4 shadow-[0_24px_90px_rgba(0,0,0,0.2)] sm:p-6 md:p-7">
 
           <!-- STAP 1: Dienst -->
           <template v-if="step === 1">
@@ -36,19 +36,19 @@
             <div class="flex flex-col gap-2">
               <button v-for="s in services" :key="s.id" type="button"
                 @click="selectService(s)"
-                class="flex w-full cursor-pointer touch-manipulation items-center justify-between rounded-xl border p-4 text-left transition-all active:scale-[0.99]"
+                class="flex w-full cursor-pointer touch-manipulation items-center gap-3 rounded-xl border p-3 text-left transition-all active:scale-[0.99] sm:p-4"
                 :class="form.service_id === s.id ? 'border-amber-500 bg-white/5' : 'border-stone-700 hover:border-stone-500 hover:bg-white/5'">
-                <div class="flex items-center gap-3">
+                <div class="flex min-w-0 items-center gap-3">
                   <div class="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 text-sm"
                     :style="{ background: s.color + '22', color: s.color }">
                     <img src="/landing-media/pic-3.png" alt="Dienst" class="h-full w-full rounded-full object-cover" />
                   </div>
-                  <div>
-                    <div class="text-sm font-medium text-white">{{ s.name }}</div>
-                    <div class="text-xs text-stone-400">{{ s.duration_label }}</div>
+                  <div class="min-w-0">
+                    <div class="truncate text-sm font-medium text-white">{{ s.name }}</div>
+                    <div class="truncate text-xs text-stone-400">{{ s.duration_label }}</div>
                   </div>
                 </div>
-                <span class="text-sm font-medium text-white">{{ s.price_formatted }}</span>
+                <span class="ml-auto shrink-0 text-sm font-medium text-white">{{ s.price_formatted }}</span>
               </button>
             </div>
           </template>
@@ -59,13 +59,13 @@
             <div class="flex flex-col gap-3">
               <button v-for="b in availableBarbers" :key="b.id" type="button"
                 @click="selectBarber(b)"
-                class="flex w-full cursor-pointer touch-manipulation items-center gap-4 rounded-xl border p-4 text-left transition-all active:scale-[0.99]"
+                class="flex w-full cursor-pointer touch-manipulation items-center gap-3 rounded-xl border p-3 text-left transition-all active:scale-[0.99] sm:gap-4 sm:p-4"
                 :class="form.barber_id === b.id ? 'border-amber-500 bg-white/5' : 'border-stone-700 hover:border-stone-500 hover:bg-white/5'">
                 <div class="w-12 h-12 rounded-full overflow-hidden bg-stone-800 flex-shrink-0">
                   <img src="/landing-media/barber-portrait.png" alt="Barber" class="h-full w-full object-cover" />
                 </div>
-                <div>
-                  <div class="text-sm font-medium text-white">{{ b.name }}</div>
+                <div class="min-w-0">
+                  <div class="truncate text-sm font-medium text-white">{{ b.name }}</div>
                   <div class="flex flex-wrap gap-1 mt-1.5">
                     <span v-for="spec in barberSpecialties(b)" :key="spec"
                       class="text-xs px-2 py-0.5 bg-stone-700 text-stone-300 rounded-full">{{ spec }}</span>
@@ -79,7 +79,7 @@
           <template v-if="step === 3">
             <h2 class="mb-5 text-sm font-medium uppercase tracking-wide text-stone-400">Kies datum en tijd</h2>
             <div class="mb-5">
-                <label for="date" class="mb-2 block text-sm font-medium text-stone-600">Datum</label>
+                <label for="date" class="mb-2 block text-sm font-medium text-stone-400">Datum</label>
                   <MonthPicker v-model="form.date" :min-date="minDate" @update:modelValue="loadSlots" />
             </div>
             <div v-if="form.date">
@@ -106,22 +106,22 @@
             <h2 class="mb-5 text-sm font-medium uppercase tracking-wide text-stone-400">Jouw gegevens</h2>
 
             <!-- Samenvatting -->
-            <div class="rounded-xl border border-stone-700 bg-stone-900 p-4 mb-6 space-y-2.5">
-              <div class="flex justify-between text-xs">
+            <div class="mb-6 space-y-2.5 rounded-xl border border-stone-700 bg-stone-900 p-4">
+              <div class="flex items-start justify-between gap-3 text-xs">
                 <span class="text-stone-400">Dienst</span>
-                <span class="font-medium text-white">{{ selectedService?.name }}</span>
+                <span class="text-right font-medium text-white">{{ selectedService?.name }}</span>
               </div>
-              <div class="flex justify-between text-xs">
+              <div class="flex items-start justify-between gap-3 text-xs">
                 <span class="text-stone-400">Barber</span>
-                <span class="font-medium text-white">{{ selectedBarber?.name }}</span>
+                <span class="text-right font-medium text-white">{{ selectedBarber?.name }}</span>
               </div>
-              <div class="flex justify-between text-xs">
+              <div class="flex items-start justify-between gap-3 text-xs">
                 <span class="text-stone-400">Datum & tijd</span>
-                <span class="font-medium text-white">{{ formattedDateTime }}</span>
+                <span class="text-right font-medium text-white">{{ formattedDateTime }}</span>
               </div>
-              <div class="flex justify-between text-xs pt-2 border-t border-stone-700">
+              <div class="flex items-start justify-between gap-3 border-t border-stone-700 pt-2 text-xs">
                 <span class="text-stone-400">Prijs</span>
-                <span class="font-semibold text-white">{{ selectedService?.price_formatted }}</span>
+                <span class="text-right font-semibold text-white">{{ selectedService?.price_formatted }}</span>
               </div>
             </div>
 
@@ -155,7 +155,7 @@
                 {{ errors.starts_at }}
               </p>
               <button type="submit" :disabled="submitting"
-                class="w-full bg-white text-stone-950 text-xs py-3.5 tracking-widest hover:bg-stone-200 disabled:opacity-40 transition-colors">
+                class="w-full rounded-md bg-white py-3.5 text-[11px] tracking-[0.18em] text-stone-950 transition-colors hover:bg-stone-200 disabled:opacity-40 sm:text-xs">
                 {{ submitting ? 'BEZIG...' : 'AFSPRAAK BEVESTIGEN' }}
               </button>
             </form>
@@ -164,14 +164,14 @@
         </div>
 
         <!-- Vorige / volgende -->
-        <div class="flex justify-between mt-5">
+        <div class="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <button v-if="step > 1" type="button" @click="step--"
-            class="text-xs text-stone-400 hover:text-white transition-colors">
+            class="w-full rounded-md border border-stone-700 py-2.5 text-xs text-stone-300 transition-colors hover:border-stone-500 hover:bg-white/5 sm:w-auto sm:border-none sm:p-0 sm:text-stone-400 sm:hover:bg-transparent sm:hover:text-white">
             ← Vorige stap
           </button>
-          <div v-else />
+          <div v-else class="hidden sm:block" />
           <button v-if="step < 4" type="button" @click="nextStep" :disabled="!canProceed"
-            class="bg-white text-stone-950 text-xs px-6 py-2.5 hover:bg-stone-200 disabled:opacity-30 transition-colors">
+            class="w-full rounded-md bg-white px-6 py-2.5 text-[11px] text-stone-950 transition-colors hover:bg-stone-200 disabled:opacity-30 sm:w-auto sm:text-xs">
             Volgende →
           </button>
         </div>

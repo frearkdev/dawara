@@ -40,39 +40,43 @@ watch(search, (q) => {
   <AdminLayout title="Klanten">
     <Head title="Admin — Klanten" />
 
-    <div class="mb-5 flex items-center justify-between">
+    <div class="mb-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
       <div class="text-xs text-stone-500">{{ filtered.length }} klanten</div>
       <input
         v-model="search"
         type="text"
         placeholder="Zoek op naam of email..."
-        class="w-64 rounded-lg border border-stone-700 bg-stone-900 px-3 py-2 text-xs text-white placeholder-stone-500 focus:outline-none focus:border-stone-500"
+        class="w-full rounded-lg border border-stone-700 bg-stone-900 px-3 py-2 text-xs text-white placeholder-stone-500 focus:outline-none focus:border-stone-500 sm:w-64"
       />
     </div>
 
     <div class="overflow-hidden rounded-[1.25rem] border border-stone-700 bg-stone-900">
-      <div class="grid grid-cols-12 border-b border-stone-800 px-5 py-3 text-[11px] font-medium uppercase tracking-wider text-stone-500">
-        <div class="col-span-3">Naam</div>
-        <div class="col-span-4">Email</div>
-        <div class="col-span-2">Telefoon</div>
-        <div class="col-span-2">Afspraken</div>
-        <div class="col-span-1" />
-      </div>
-      <div v-if="filtered.length === 0" class="px-5 py-8 text-center text-xs text-stone-500">
-        Geen klanten gevonden.
-      </div>
-      <div v-for="c in filtered" :key="c.id" class="grid grid-cols-12 items-center border-b border-stone-800 px-5 py-3.5 transition-colors hover:bg-white/5 cursor-pointer" @click="goToCustomer(c.id)">
-        <div class="col-span-3 text-xs font-medium text-white">{{ c.name }}</div>
-        <div class="col-span-4 text-xs text-stone-400 truncate pr-3">{{ c.email }}</div>
-        <div class="col-span-2 text-xs text-stone-400">{{ c.phone || '-' }}</div>
-        <div class="col-span-2 text-xs text-stone-400">{{ c.appointments_count }}</div>
-        <div class="col-span-1 text-right">
-          <span class="text-xs text-amber-500 hover:underline">Details →</span>
+      <div class="overflow-x-auto">
+        <div class="min-w-[760px]">
+          <div class="grid grid-cols-12 border-b border-stone-800 px-5 py-3 text-[11px] font-medium uppercase tracking-wider text-stone-500">
+            <div class="col-span-3">Naam</div>
+            <div class="col-span-4">Email</div>
+            <div class="col-span-2">Telefoon</div>
+            <div class="col-span-2">Afspraken</div>
+            <div class="col-span-1" />
+          </div>
+          <div v-if="filtered.length === 0" class="px-5 py-8 text-center text-xs text-stone-500">
+            Geen klanten gevonden.
+          </div>
+          <div v-for="c in filtered" :key="c.id" class="grid grid-cols-12 items-center border-b border-stone-800 px-5 py-3.5 transition-colors hover:bg-white/5 cursor-pointer" @click="goToCustomer(c.id)">
+            <div class="col-span-3 text-xs font-medium text-white">{{ c.name }}</div>
+            <div class="col-span-4 text-xs text-stone-400 truncate pr-3">{{ c.email }}</div>
+            <div class="col-span-2 text-xs text-stone-400">{{ c.phone || '-' }}</div>
+            <div class="col-span-2 text-xs text-stone-400">{{ c.appointments_count }}</div>
+            <div class="col-span-1 text-right">
+              <span class="text-xs text-amber-500 hover:underline">Details →</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
 
-    <div v-if="customers.links.length > 3" class="mt-5 flex items-center gap-2">
+    <div v-if="customers.links.length > 3" class="mt-5 flex flex-wrap items-center gap-2">
       <template v-for="link in customers.links" :key="link.label">
         <button
           v-if="link.url"

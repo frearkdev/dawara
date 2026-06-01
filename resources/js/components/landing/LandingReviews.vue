@@ -31,7 +31,7 @@ defineProps<{
                     <article
                         v-for="review in reviews"
                         :key="review.id"
-                        class="snap-start shrink-0 w-[320px] rounded-[1rem] border border-stone-700 bg-stone-900 p-5 transition-transform hover:border-stone-600"
+                        class="snap-start w-[85vw] max-w-[320px] shrink-0 rounded-[1rem] border border-stone-700 bg-stone-900 p-5 transition-transform hover:border-stone-600"
                     >
                         <div class="flex items-center gap-1 text-sm text-amber-500">
                             <span v-for="n in 5" :key="n" :class="n <= review.rating ? '' : 'text-stone-600'">★</span>

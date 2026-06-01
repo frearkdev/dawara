@@ -46,14 +46,13 @@ function submit() {
 
 <template>
   <Head title="Afspraak verplaatsen" />
-  <div class="min-h-screen bg-stone-950 px-4 py-16 text-stone-100">
+  <div class="min-h-screen bg-stone-950 px-4 py-10 text-stone-100 sm:py-16">
     <div class="mx-auto max-w-lg">
       <div class="mb-6 text-center">
         <h1 class="mb-1 text-xl font-medium text-white">Afspraak verplaatsen</h1>
         <p class="text-xs text-stone-400">Kies een nieuwe datum, tijd en eventueel andere dienst of barber.</p>
       </div>
-
-      <form @submit.prevent="submit" class="space-y-4 rounded-[1.5rem] border border-stone-700 bg-stone-900 p-6 shadow-[0_30px_100px_rgba(0,0,0,0.35)]">
+      <form @submit.prevent="submit" class="space-y-4 rounded-[1.5rem] border border-stone-700 bg-stone-900 p-5 shadow-[0_30px_100px_rgba(0,0,0,0.35)] sm:p-6">
         <div>
           <label class="mb-1 block text-[11px] uppercase tracking-wider text-stone-500">Dienst</label>
           <select v-model="form.service_id" required class="w-full rounded-lg border border-stone-700 bg-stone-950 px-3 py-2.5 text-sm text-white focus:outline-none focus:border-stone-500">
@@ -77,7 +76,7 @@ function submit() {
           <label class="mb-1 block text-[11px] uppercase tracking-wider text-stone-500">Tijdslot</label>
           <div v-if="loadingSlots" class="py-2 text-xs text-stone-500">Beschikbaarheid laden...</div>
           <div v-else-if="availableSlots.length === 0" class="py-2 text-xs text-stone-500">Geen tijdsloten beschikbaar op deze dag.</div>
-          <div v-else class="grid grid-cols-4 gap-2">
+          <div v-else class="grid grid-cols-3 gap-2 sm:grid-cols-4">
             <button
               v-for="slot in availableSlots" :key="slot"
               type="button"
@@ -95,11 +94,11 @@ function submit() {
           <p v-for="(e, key) in errors" :key="key">{{ e }}</p>
         </div>
 
-        <div class="flex gap-3 pt-2">
-          <Link href="/" class="flex-1 rounded-md border border-stone-700 py-3 text-center text-xs text-stone-300 transition-colors hover:border-stone-500 hover:bg-white/5">
+        <div class="grid gap-2 pt-2 sm:grid-cols-2 sm:gap-3">
+          <Link href="/" class="rounded-md border border-stone-700 py-3 text-center text-[11px] text-stone-300 transition-colors hover:border-stone-500 hover:bg-white/5 sm:text-xs">
             Annuleren
           </Link>
-          <button type="submit" class="flex-1 rounded-md border border-stone-600 bg-stone-950 py-3 text-xs text-white transition-colors hover:bg-stone-800">
+          <button type="submit" class="rounded-md border border-stone-600 bg-stone-950 py-3 text-[11px] text-white transition-colors hover:bg-stone-800 sm:text-xs">
             Verplaatsen
           </button>
         </div>
