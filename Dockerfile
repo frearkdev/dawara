@@ -22,6 +22,7 @@ RUN pnpm build
 # Stage 2: PHP-FPM + Nginx + Supervisor (all-in-one for simplicity)
 FROM php:8.4-fpm-alpine
 RUN apk add --no-cache \
+    $PHPIZE_DEPS \
     nginx \
     supervisor \
     curl \
@@ -43,7 +44,9 @@ RUN apk add --no-cache \
         bcmath \
         opcache \
         gd \
-        xml
+        xml \
+    && pecl install redis \
+    && docker-php-ext-enable redis
 
 WORKDIR /var/www/html
 
