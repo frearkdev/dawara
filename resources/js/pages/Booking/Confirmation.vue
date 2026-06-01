@@ -1,9 +1,11 @@
 <template>
     <Head title="Afspraak bevestigd" />
-    <div class="min-h-screen bg-stone-950 px-4 py-10 text-stone-100 sm:py-14">
-        <div class="mx-auto grid max-w-4xl gap-6 lg:grid-cols-[0.9fr_1.1fr]">
+    <div
+        class="flex min-h-screen items-center justify-center bg-stone-950 px-4 py-7 text-stone-100"
+    >
+        <div class="w-full max-w-md -translate-y-10">
             <div
-                class="w-full rounded-[1.5rem] border border-stone-700 bg-stone-900 p-5 text-center shadow-[0_30px_100px_rgba(0,0,0,0.35)] sm:p-8"
+                class="w-full rounded-[1.5rem] border border-stone-700 bg-stone-900 text-center shadow-[0_30px_100px_rgba(0,0,0,0.35)] sm:p-8"
             >
                 <div
                     class="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-full bg-emerald-500/10 ring-1 ring-emerald-500/20"
