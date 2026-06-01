@@ -5,16 +5,18 @@ cd /var/www/html
 
 echo "Running Laravel startup tasks..."
 
+required_vars="APP_KEY DB_HOST DB_PORT DB_DATABASE DB_USERNAME DB_PASSWORD"
+for var in $required_vars; do
+  val=$(printenv "$var" || true)
+  if [ -z "$val" ]; then
+    echo "ERROR: Required environment variable '$var' is missing."
+    exit 1
+  fi
+done
+
 php artisan config:clear || true
 php artisan route:clear || true
 php artisan view:clear || true
-
-if [ -n "$APP_KEY" ]; then
-  echo "APP_KEY already set."
-else
-  echo "Generating APP_KEY..."
-  php artisan key:generate --force
-fi
 
 if [ "${RUN_MIGRATIONS:-true}" = "true" ]; then
   echo "Running migrations..."
