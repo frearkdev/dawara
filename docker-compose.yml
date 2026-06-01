@@ -13,6 +13,7 @@ services:
       APP_KEY: ${APP_KEY:?APP_KEY is required}
       APP_ENV: production
       APP_DEBUG: "false"
+      APP_FORCE_HTTPS: ${APP_FORCE_HTTPS:-true}
       DB_HOST: db
       DB_PORT: 3306
       DB_DATABASE: ${DB_DATABASE:?DB_DATABASE is required}
